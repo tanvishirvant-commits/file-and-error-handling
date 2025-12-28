@@ -1,22 +1,25 @@
 #Task 1
-file_handler=open("sample txt")
+file_handler=open("sample.txt",'rt')
 print(file_handler)
 content=file_handler.read()
 print(content)
-
-
-import os
-file_name="sample.txt"
-if os.path.exists(file_name):
-    print("The file sample.txt found")
-else:
-    print(f"Error:The file {'sample.txt'} was not found")
-
+with open("sample.txt",'r') as file:
+    line_num=1
+    for line in file:
+        print(f"Line{line_num}:{line.strip()}")
+        line_num +=1
 #Task 2
-fh=open("output.txt",'wt')
 Text=input("Enter text to write to the file:")
-fh=open("output.txt",'at')
-fh.write("Learning file handling in python")
-fh.close()
+with open('output.txt','w') as file:
+    file.write(Text + '\n')
+    print("Data successfully written to output.txt")
 
+second_text=input("Enter additional text to append:")
+with open('output.txt','a') as file:
+    file.write(second_text + '\n')
+    print("Data successfully append to: output.txt")
 
+print("Final content of output.txt:")
+with open('output.txt','r') as file:
+    content=file.read()
+    print(content)
